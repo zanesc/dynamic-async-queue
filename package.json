@@ -12,5 +12,14 @@
   },
   "devDependencies": {
     "typescript": "^2.4.2"
-  }
+  },
+  "files": [
+    "index.ts",
+    "queue-item.ts",
+    "types.d.ts",
+    "index.js",
+    "index.js.map",
+    "queue-item.js",
+    "queue-item.js.map"
+  ]
 }
