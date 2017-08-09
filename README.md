@@ -13,7 +13,7 @@ This is not the most elegant of solutions but it works :D
 ## Basic Usage
 
 ```JavaScript
-var AsyncQueue = require('async-queue')
+var AsyncQueue = require('dynamic-async-queue')
 
 var queue = new AsyncQueue(10) // 10 being the concurrency
 
