@@ -19,7 +19,6 @@ export default class AsyncQueue<T> {
         this.process()
       })
       this.addToWaitingList(item, removeDuplicateQueuedItems)
-      this.waitingList.push(item)
     })
 
     this.process()
