@@ -28,13 +28,27 @@ class AsyncQueue {
             return ret;
         });
     }
-    addToWaitingList(item, removeDuplicateQueuedItems) {
-        if (removeDuplicateQueuedItems) {
-            this.waitingList = this.waitingList.filter(function (element) {
-                return element.getItemId() !== item.getItemId();
+    addToWaitingList(item, replaceDuplicateQueuedItems) {
+        if (replaceDuplicateQueuedItems) {
+            var duplicates = this.waitingList.filter(function (element) {
+                return element.getItemId() === item.getItemId();
             });
+            if (!duplicates || duplicates.length === 0) {
+                this.waitingList.push(item);
+                return;
+            }
+            var duplicate = duplicates[0];
+            var indexOfDuplicate = this.waitingList.indexOf(duplicate);
+            if (indexOfDuplicate !== undefined && indexOfDuplicate !== null) {
+                this.waitingList[indexOfDuplicate] = item;
+            }
+            else {
+                this.waitingList.push(item);
+            }
         }
-        this.waitingList.push(item);
+        else {
+            this.waitingList.push(item);
+        }
     }
     process() {
         while (this.running < this.concurrency && this.waitingList.length > 0) {
